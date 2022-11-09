@@ -19,6 +19,7 @@
                 {
                     <th scope="col">@dataColumn.ToString()</th>
                 }
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +30,12 @@
                     {
                         <td>@data[dataColumn].ToString()</td>
                     }
-
+                <td>   <button type="button" onclick="location.href='/User/Detail?dt=@data["Identificativo"]'" class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#exampleModal"> Vedi Dettagli </button> </td>
+                    @if (Session["utente"] != null)
+                {
+                    <td><button type="button"  class="btn btn-warning"> Modifica </button></td>
+                    <td><button type="button" class="btn btn-danger"> Elimina </button> </td>
+                }
                 </tr>
 
             }

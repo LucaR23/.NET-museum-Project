@@ -37,7 +37,7 @@ namespace WebAppMupin.Controllers
 
             cnn.Open();
             cmd.ExecuteNonQuery();
-
+            cnn.Close();
             return RedirectToAction("Index", "administrator");
 
         }
@@ -52,7 +52,7 @@ namespace WebAppMupin.Controllers
 
             cnn.Open();
             cmd.ExecuteNonQuery();
-
+            cnn.Close();
             return RedirectToAction("Index", "administrator");
         }
     }

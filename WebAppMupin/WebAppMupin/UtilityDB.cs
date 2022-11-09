@@ -31,7 +31,8 @@ namespace WebAppMupin
             DataTable dt = new DataTable();
             cnn.Open();
             da.SelectCommand = cmd;
-            da.Fill(dt); 
+            da.Fill(dt);
+            cnn.Close();
             return dt;
         }
 

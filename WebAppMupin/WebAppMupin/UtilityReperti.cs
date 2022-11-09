@@ -35,8 +35,9 @@ namespace WebAppMupin
             MySqlDataReader read= cmd.ExecuteReader();
             while (read.Read())
             {
-                tables.Add(read.GetString(1));
+                tables.Add(read.GetString(0));
             }
+            cnn.Close();
            return tables;
         }
    

@@ -7,6 +7,7 @@ namespace WebAppMupin.Models.Reperti
 {
     public class RepertoDetail
     {
+        public string Id { get; set; }
         public string Note { get; set; }
         public string Url { get; set; }
         public string Tag { get; set; }

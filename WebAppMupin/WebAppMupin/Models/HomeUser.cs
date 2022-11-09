@@ -10,7 +10,5 @@ namespace WebAppMupin.Models
         
         public string nome { get; set; }
         public byte[] image { get; set; }
-
-
     }
 }
