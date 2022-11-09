@@ -1,0 +1,19 @@
+﻿PASSWORD  GENERAL User: 30102022 ; -> valido per tutti gli utenti 
+
+PASSWORD ADMINISTRATOR : adminMupin; 
+
+-----------------------------------------
+Model            
+->macchinoso
+->più controllo
+-> una vista per reperto 
+[a meno di altre soluzioni]
+->se voglio fare cose più complesse ho il controllo
+
+  VS     DataTable  -->NON MI PIACE !!! 
+-> più semplice 
+-> una vista sola
+-> posso fare solo cose semplici[visualizzazione e basta]
+-> 
+
+valutare di ridisegnare il DB 

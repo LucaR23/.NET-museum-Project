@@ -1,0 +1,47 @@
+﻿@model  WebAppMupin.Models.Login
+
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
+    <title>Login Page </title>
+</head>
+<body>
+    <h2> Login Utente </h2>
+  
+    <form method="post" action="@Url.Action("VerifyUser")">
+        @if (!string.IsNullOrEmpty(Model.message))
+        {
+            <strong>@Model.message</strong>
+        }
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <br />
+            @Html.TextBoxFor(u => u.username)
+            <br />
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <br />
+            @Html.PasswordFor(p => p.password)
+            <br />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+
+
