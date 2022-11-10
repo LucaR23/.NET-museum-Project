@@ -12,7 +12,7 @@
 <body>
     <button type="submit" id="back" class="btn btn-warning" onclick="location.href='/User/Index'">Indietro</button>
 
-    <table class="table table-striped">
+    <table class="table table-striped" id="showtable">
         <thead>
             <tr>
                 @foreach (DataColumn dataColumn in Model.Columns)
@@ -30,18 +30,37 @@
                     {
                         <td>@data[dataColumn].ToString()</td>
                     }
-                <td>   <button type="button" onclick="location.href='/User/Detail?dt=@data["Identificativo"]'" class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#exampleModal"> Vedi Dettagli </button> </td>
+                    <td>   <button type="button" id="viewBtn" class="btn btn-info"> Vedi Dettagli </button> </td>
                     @if (Session["utente"] != null)
-                {
-                    <td><button type="button"  class="btn btn-warning"> Modifica </button></td>
-                    <td><button type="button" class="btn btn-danger"> Elimina </button> </td>
-                }
+                    {
+                        <td><button type="button" class="btn btn-warning"> Modifica </button></td>
+                        <td><button type="button" class="btn btn-danger"> Elimina </button> </td>
+                    }
                 </tr>
 
             }
 
         </tbody>
     </table>
+    <div id="showmodal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script>
+        $("#showtable").on("click", "#viewBtn", function () {
+            var id = $(this).closest("tr").find("td").eq(0).html();
+            $.ajax({
+                url: "/User/Detail",
+                data: { dt: id },
+                success: function (data) {
+                    $("#showmodal .modal-dialog").html(data);
+                    $("#showmodal").modal("show");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

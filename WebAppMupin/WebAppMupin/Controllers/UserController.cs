@@ -51,7 +51,7 @@ namespace WebAppMupin.Controllers
 
         public ActionResult logout()
         {
-
+            Session["utente"] = null;
             return RedirectToAction("formLogin", "Login");
         }
 
@@ -79,6 +79,7 @@ namespace WebAppMupin.Controllers
         {
             string query = "SELECT * FROM repertoDetail WHERE identificativoReperto= @id";
             MySqlConnection cnn = UtilityDB.connection();
+           
             MySqlCommand cmd = new MySqlCommand(query, cnn);
             cmd.Parameters.AddWithValue("@id", dt);
             cnn.Open();
@@ -94,7 +95,7 @@ namespace WebAppMupin.Controllers
                 repertoDetail.Immagine = (byte[])dr["immagine"];
             }
             cnn.Close();
-            return View("DetailReperti", repertoDetail);
+            return PartialView("_DetailReperti", repertoDetail);
         }
 
         public ActionResult Update(string id)

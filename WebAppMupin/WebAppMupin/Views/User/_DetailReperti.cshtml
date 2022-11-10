@@ -1,34 +1,12 @@
 ﻿
 @model WebAppMupin.Models.Reperti.RepertoDetail
-
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .modal-body {
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+  <!-- Modal -->
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"> Dettagli reperto @Model.Id</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style=" text-align: center;">
                     <h6> Immagine</h6>
                     <img style="width:25%; height: 25%;" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Immagine,0,Model.Immagine.Length))" alt="immagineoo">
                     <h6>Note:</h6>
@@ -39,9 +17,3 @@
 
                 </div>
             </div>
-        </div>
-    </div>
-
-  
-</body>
-</html>

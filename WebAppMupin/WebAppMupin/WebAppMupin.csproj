@@ -293,7 +293,7 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Administrator\HomeAdministrator.cshtml" />
     <Content Include="Views\User\ViewReperti.cshtml" />
-    <Content Include="Views\User\DetailReperti.cshtml" />
+    <Content Include="Views\User\_DetailReperti.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
