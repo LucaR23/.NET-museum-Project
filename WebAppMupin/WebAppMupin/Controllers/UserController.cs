@@ -70,6 +70,12 @@ namespace WebAppMupin.Controllers
                 List<string> colonne = UtilityDB.getTableColumn(cnn, categoria);
                 string query = UtilityReperti.generateQuerySelect(categoria, colonne);
                 DataTable dt = UtilityDB.GetDataTable(query, cnn);
+
+                 dt.Columns.Add("categoria");
+                 DataRow dataRow = dt.NewRow();
+                 dataRow["categoria"] = categoria;
+                 dt.Rows.Add(dataRow);
+
                 return View("Viewreperti", dt);
             }
 
@@ -88,11 +94,14 @@ namespace WebAppMupin.Controllers
             RepertoDetail repertoDetail = new RepertoDetail();
             while (dr.Read())
             {
-                repertoDetail.Id= dr["identificativoReperto"].ToString();
-                repertoDetail.Url = dr["URL"].ToString();
-                repertoDetail.Note = dr["note"].ToString();
-                repertoDetail.Tag = dr["tag"].ToString();
-                repertoDetail.Immagine = (byte[])dr["immagine"];
+                if (dr != null)
+                {
+                    repertoDetail.Id = dr["identificativoReperto"].ToString();
+                    repertoDetail.Url = dr["URL"].ToString();
+                    repertoDetail.Note = dr["note"].ToString();
+                    repertoDetail.Tag = dr["tag"].ToString();
+                    repertoDetail.Immagine = (byte[])dr["immagine"];
+                }
             }
             cnn.Close();
             return PartialView("_DetailReperti", repertoDetail);
@@ -104,9 +113,29 @@ namespace WebAppMupin.Controllers
 
         }
 
-        public ActionResult Delete(string id)
+        public bool Delete(string del,string tab)
         {
-    return View(id);
+            MySqlConnection connection = UtilityDB.connection();
+
+            string query = UtilityReperti.generateQueryDelete(tab,del);
+            MySqlCommand cnn = new MySqlCommand(query, connection);
+            try
+            {
+                connection.Open();
+                cnn.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }catch(MySqlException ex)
+            {
+                return false;
+            }
+
+               
+        }
+
+        public ActionResult Insert(string ins)
+        {
+            return View();
         }
     }
 }

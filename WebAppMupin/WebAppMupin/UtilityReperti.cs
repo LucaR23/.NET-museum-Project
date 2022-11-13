@@ -40,7 +40,18 @@ namespace WebAppMupin
             cnn.Close();
            return tables;
         }
+
+        public static string generateQueryDelete(string tabella,string id)
+        {
+            string query = "DELETE  FROM " + tabella + " WHERE Identificativo= "+id;
+            return query;
+        }
    
+        public static string generateQueryUpdate(string tab,string id)
+        {
+            string query = "";
+            return query;
+        }
       
     }
 }
