@@ -243,6 +243,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Models\NewUser.cs" />
     <Compile Include="Models\Reperti\Computer.cs" />
     <Compile Include="Models\HomeUser.cs" />
     <Compile Include="Models\Reperti\Libro.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Administrator\HomeAdministrator.cshtml" />
     <Content Include="Views\User\ViewReperti.cshtml" />
     <Content Include="Views\User\_DetailReperti.cshtml" />
+    <Content Include="Views\Administrator\_NewUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

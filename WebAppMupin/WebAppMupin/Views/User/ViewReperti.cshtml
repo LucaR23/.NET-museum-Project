@@ -1,6 +1,6 @@
 ﻿@using System.Data
 @model DataTable
-
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <body>
     <button type="submit" id="back" class="btn btn-warning" onclick="location.href='/User/Index'">Indietro</button>
     <div>
-        <p> @Model.Columns["categoria"].DefaultValue</p>
+
     </div>
     <table class="table table-striped" id="showtable">
         <thead>
@@ -34,7 +34,7 @@
                 <tr>
                     @foreach (DataColumn dataColumn in Model.Columns)
                     {
-                        if (dataColumn.ToString() != "categoria")
+                       if (dataColumn.ToString() != "categoria")
                         {
                         <td>@data[dataColumn].ToString()</td>
                         }
@@ -56,8 +56,9 @@
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script>
+    
+
         $("#showtable").on("click", "#viewBtn", function () {
             let id = $(this).closest("tr").find("td").eq(0).html();
             $.ajax({
@@ -77,7 +78,8 @@
         $(".btn-del").on("click", function () {
             if (confirm("Procedere con l'eliminazione?")) {
                 let id = $(this).closest("tr").find("td").eq(0).html();
-                let tabella = ;
+                const getTabella = window.location.search.split('=');
+                let tabella = getTabella[1];
                 $.ajax({
                     url: "/User/Delete",
                     type: 'GET',

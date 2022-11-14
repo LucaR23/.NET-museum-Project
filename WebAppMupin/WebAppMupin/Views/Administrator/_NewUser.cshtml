@@ -1,0 +1,56 @@
+﻿@model WebAppMupin.Models.NewUser
+
+<div class="modal-content">
+    <div class="modal-header">Inserimento Nuovo Utente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body" style=" text-align: center;">
+
+        <form method="post" action="@Url.Action("Insert")">
+            @if (!string.IsNullOrEmpty(Model.message))
+            {
+                <strong>@Model.message</strong>
+            }
+        <div class="form-group">
+            <label> Nome </label>
+            <br/>
+            @Html.TextBoxFor(n => n.Nome)
+            <br />
+
+            <label> Cognome</label>
+            <br/>
+            @Html.TextBoxFor(c=>c.Cognome)
+            <br/>
+
+            <label for="exampleInputEmail1">Email address</label>
+            <br />
+            @Html.TextBoxFor(u => u.UserName)
+            <br />
+
+            <p>Password di default : @Model.DefaultPassword</p>
+
+        </div>
+         
+            <button type="submit" class="btn btn-primary" id="invia">Inserisci</button>
+        </form>
+
+
+
+    </div>
+</div>
+<script>
+    $('#invia').on('click', function() {
+            $.ajax({
+                url: "/Administrator/Insert",
+                type: 'POST',
+                error: function () {
+                    alert('Errore impossibile Inserire nuovo utente');
+                },
+                success: function () {
+                    alert("Inserimento Eseguito con successo");
+                    location.reload();
+                }
+            })
+        }
+    });
+</script>
