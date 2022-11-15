@@ -41,7 +41,8 @@
     <title>Home User</title>
 </head>
 <body>
-
+      @if (Session["utente"] != null)
+      {
     <div class="dropdown-center">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Inserisci Nuovo:
@@ -56,7 +57,14 @@
     </div>
 
     <button type="submit" id="logout" class="btn btn-warning" onclick="location.href='/User/logout'">Logout</button>
+      }
+
+
     <hr>
+      @if (Session["utente"] == null)
+              {
+                  <button type = "submit" id = "login" class="btn btn-info" onclick="location.href='/Login/FormLogin'">Login</button>
+              }
     <main>
         <!--  blocco da generare -->
         @foreach (HomeUser homeUser in Model)

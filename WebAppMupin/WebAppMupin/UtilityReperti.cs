@@ -43,7 +43,7 @@ namespace WebAppMupin
 
         public static string generateQueryDelete(string tabella,string id)
         {
-            string query = "DELETE  FROM " + tabella.ToString() + " WHERE Identificativo= "+id.ToString();
+            string query = "DELETE FROM " + tabella.ToString() + " WHERE Identificativo= '"+id.ToString()+"';";
             return query;
         }
    

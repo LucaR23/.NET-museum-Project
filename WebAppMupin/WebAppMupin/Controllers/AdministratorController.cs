@@ -80,12 +80,12 @@ namespace WebAppMupin.Controllers
             return PartialView("_NewUser", newUser);
         }
 
-        public bool Insert(NewUser n)
+        public ActionResult Insert(NewUser n)
         {
             if (n.UserName == null || n.Nome == null || n.Cognome == null)
             {
-                n.message = "Compila tutti i campi";
-                return false;
+                //n.message = "Compila tutti i campi";
+                return Json(false);
             }
             // controllare di non inserire due username uguali
             else
@@ -104,11 +104,11 @@ namespace WebAppMupin.Controllers
                 }
                 catch(MySqlException ex)
                 {
-                    return false;
+                    return Json(false);
                 }
                 cnnn.Close();
-                n.message = "nuovo Utente inserito";
-                return true;
+                //n.message = "nuovo Utente inserito";
+                return Json(true);
             }
         }
     }

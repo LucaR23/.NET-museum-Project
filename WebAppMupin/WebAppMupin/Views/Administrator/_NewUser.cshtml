@@ -43,12 +43,13 @@
             $.ajax({
                 url: "/Administrator/Insert",
                 type: 'POST',
+                dataType: "json",
                 error: function () {
                     alert('Errore impossibile Inserire nuovo utente');
                 },
                 success: function () {
                     alert("Inserimento Eseguito con successo");
-                    location.reload();
+                    //location.reload();
                 }
             })
         }
