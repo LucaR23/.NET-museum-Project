@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebAppMupin.Models;
@@ -135,6 +136,16 @@ namespace WebAppMupin.Controllers
 
         public ActionResult Insert(string ins)
         {
+            MySqlConnection conn = UtilityDB.connection();
+            List<string> tab = UtilityReperti.getTableName(conn);
+            if (tab.Contains(ins))
+            {
+
+            }
+            else
+            {
+                return View();
+            }
             return View();
         }
 

@@ -14,13 +14,32 @@
     <title>Inserimento nuovo reperto</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         @foreach (string s in Model)
         {
-        <button type="button" class="btn btn-info" id="@s.ToString()">@s.ToString()</button>
+            <button type="button" class="btn btn-info" onclick="getSelected('@s.ToString()')">@s.ToString()</button>
         }
     </div>
 
+
+    <script>
+        function getSelected(btn) {
+            console.log(btn);
+
+            $.ajax({
+                url: "/User/Insert",
+                data: { ins: btn },
+                error: function () {
+                    alert("Internal Error ");
+                }
+            });
+        }
+
+
+       
+  
+    </script>
 </body>
+
 </html>
 
