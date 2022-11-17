@@ -1,0 +1,26 @@
+﻿@model System.Collections.Generic.List<string>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            text-align: center;
+        }
+    </style>
+    <title>Inserimento nuovo reperto</title>
+</head>
+<body>
+    <div class="container">
+        @foreach (string s in Model)
+        {
+        <button type="button" class="btn btn-info" id="@s.ToString()">@s.ToString()</button>
+        }
+    </div>
+
+</body>
+</html>
+

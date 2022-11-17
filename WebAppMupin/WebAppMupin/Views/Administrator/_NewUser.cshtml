@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body" style=" text-align: center;">
 
-        <form method="post" action="@Url.Action("Insert")">
+        <form method="post" id="form">
             @if (!string.IsNullOrEmpty(Model.message))
             {
                 <strong>@Model.message</strong>
@@ -39,19 +39,23 @@
     </div>
 </div>
 <script>
-    $('#invia').on('click', function() {
-            $.ajax({
-                url: "/Administrator/Insert",
-                type: 'POST',
-                dataType: "json",
-                error: function () {
-                    alert('Errore impossibile Inserire nuovo utente');
-                },
-                success: function () {
-                    alert("Inserimento Eseguito con successo");
-                    //location.reload();
-                }
-            })
-        }
+
+    $("#form").submit(function (e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+       // var actionUrl = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: @Url.Action("Insert"),
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+
     });
+
 </script>

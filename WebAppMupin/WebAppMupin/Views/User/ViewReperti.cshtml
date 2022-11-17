@@ -31,21 +31,21 @@
         <tbody>
             @foreach (DataRow data in Model.Rows)
             {
-                <tr>
-                    @foreach (DataColumn dataColumn in Model.Columns)
+            <tr>
+                @foreach (DataColumn dataColumn in Model.Columns)
+                {
+                    if (dataColumn.ToString() != "categoria")
                     {
-                       if (dataColumn.ToString() != "categoria")
-                        {
                         <td>@data[dataColumn].ToString()</td>
-                        }
                     }
-                    <td>   <button type="button" id="viewBtn" class="btn btn-info"> Vedi Dettagli </button> </td>
-                    @if (Session["utente"] != null)
-                    {
-                        <td><button type="button" class="btn btn-warning"> Modifica </button></td>
-                        <td><button type="button" class="btn btn-del btn-danger"> Elimina </button> </td>
-                    }
-                </tr>
+                }
+                <td>   <button type="button" id="viewBtn" class="btn btn-info"> Vedi Dettagli </button> </td>
+                @if (Session["utente"] != null)
+                {
+                    <td><button type="button" class="btn btn-warning"> Modifica </button></td>
+                    <td><button type="button" class="btn btn-del btn-danger"> Elimina </button> </td>
+                }
+            </tr>
 
             }
 
@@ -56,48 +56,8 @@
 
         </div>
     </div>
-    <script>
-    
 
-        $("#showtable").on("click", "#viewBtn", function () {
-            let id = $(this).closest("tr").find("td").eq(0).html();
-            $.ajax({
-                url: "/User/Detail",
-                data: { dt: id },
-                success: function (data) {
-                    $("#showmodal .modal-dialog").html(data);
-                    $("#showmodal").modal("show");
-                },
-                error: function ()
-                {
-                    alert("No Detail Found");
-            }
-            });
-        });
-
-        $(".btn-del").on("click", function () {
-            if (confirm("Procedere con l'eliminazione?")) {
-                let id = $(this).closest("tr").find("td").eq(0).html();
-                const getTabella = window.location.search.split('=');
-                let tabella = getTabella[1];
-                $.ajax({
-                    url: "/User/Delete",
-                    type: 'GET',
-                    data: {
-                        del: id,
-                        tab: tabella
-                    },
-                    error: function () {
-                        alert('Errore impossibile eliminare');
-                    },
-                    success: function (data) {
-                        alert("Eliminazione eseguita con successo");
-                        location.reload();
-                    }
-                })
-            }
-        });
-    </script>
+    <script src="~/MyScript/reperti.js"></script>
 </body>
 </html>
 

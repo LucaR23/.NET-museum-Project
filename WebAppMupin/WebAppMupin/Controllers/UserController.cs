@@ -137,5 +137,15 @@ namespace WebAppMupin.Controllers
         {
             return View();
         }
+
+        public ActionResult New()
+        {
+            MySqlConnection cnn = UtilityDB.connection();
+            List<string> tabelle = UtilityReperti.getTableName(cnn);
+            tabelle.Remove("categoriereperti");
+            tabelle.Remove("utenti");
+            tabelle.Remove("repertodetail");
+            return View("NewReperto",tabelle);
+        }
     }
 }

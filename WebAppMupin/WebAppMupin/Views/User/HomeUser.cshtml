@@ -43,20 +43,8 @@
 <body>
       @if (Session["utente"] != null)
       {
-    <div class="dropdown-center">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Inserisci Nuovo:
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/User/Insert?ins=computer">Computer</a></li>
-            <li><a class="dropdown-item" href="#">Software</a></li>
-            <li><a class="dropdown-item" href="#">Periferica</a></li>
-            <li><a class="dropdown-item" href="#">Libro</a></li>
-            <li><a class="dropdown-item" href="#">Rivista</a></li>
-        </ul>
-    </div>
-
-    <button type="submit" id="logout" class="btn btn-warning" onclick="location.href='/User/logout'">Logout</button>
+        <button type="submit" id="newField" class="btn btn-info" onclick="location.href='@Url.Action("New","User")'">Inserisci Nuovo</button>
+        <button type="submit" id="logout" class="btn btn-warning" onclick="location.href='/User/logout'">Logout</button>
       }
 
 

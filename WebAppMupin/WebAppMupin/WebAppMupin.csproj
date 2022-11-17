@@ -231,6 +231,7 @@
     <Content Include="Global.asax" />
     <Content Include="Immagini\vettore-dell-icona-del-museo-isolato-su-fondo-bianco-concetto-di-logo-125790489.jpg" />
     <Content Include="info.txt" />
+    <Content Include="MyScript\reperti.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -297,6 +298,7 @@
     <Content Include="Views\User\ViewReperti.cshtml" />
     <Content Include="Views\User\_DetailReperti.cshtml" />
     <Content Include="Views\Administrator\_NewUser.cshtml" />
+    <Content Include="Views\User\NewReperto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
