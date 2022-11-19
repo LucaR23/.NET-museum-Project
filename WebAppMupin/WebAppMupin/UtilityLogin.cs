@@ -73,7 +73,7 @@ namespace WebAppMupin
         public static bool verifiyUser(string username)  
         {
             MySqlConnection cnn = UtilityDB.connection();
-            string query = "SELECT ID FROM utenti WHERE username= @us AND Abilitato=1;";
+            string query = "SELECT ID FROM utenti WHERE username= @us;";
             MySqlCommand cmd= cnn.CreateCommand();
             cmd.CommandText = query;
             cmd.Parameters.AddWithValue("@us", username);

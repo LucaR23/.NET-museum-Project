@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
@@ -84,9 +85,14 @@ namespace WebAppMupin.Controllers
         {
             if (n.UserName == null || n.Nome == null || n.Cognome == null)
             {
-                //n.message = "Compila tutti i campi";
-                return Json(false);
+                return Json("Compila tutti i campi");
             }
+            bool exist = UtilityLogin.verifiyUser(n.UserName);
+            if (exist)
+            {
+                return Json("Utente già registrato");
+            }
+            
             // controllare di non inserire due username uguali
             else
             {
@@ -104,11 +110,11 @@ namespace WebAppMupin.Controllers
                 }
                 catch(MySqlException ex)
                 {
-                    return Json(false);
+                    return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
                 }
                 cnnn.Close();
                 //n.message = "nuovo Utente inserito";
-                return Json(true);
+                return Json("Nuovo Utente inserito");
             }
         }
     }

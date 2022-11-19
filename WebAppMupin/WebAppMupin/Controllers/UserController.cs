@@ -114,7 +114,7 @@ namespace WebAppMupin.Controllers
 
         }
 
-        public bool Delete(string del,string tab)
+        public ActionResult Delete(string del,string tab)
         {
             MySqlConnection connection = UtilityDB.connection();
 
@@ -125,10 +125,10 @@ namespace WebAppMupin.Controllers
                 connection.Open();
                 cnn.ExecuteNonQuery();
                 connection.Close();
-                return true;
+                return Json(true);
             }catch(MySqlException ex)
             {
-                return false;
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
                
@@ -144,7 +144,7 @@ namespace WebAppMupin.Controllers
             }
             else
             {
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             return View();
         }

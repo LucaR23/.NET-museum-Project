@@ -10,6 +10,9 @@
         .container {
             text-align: center;
         }
+        .back{
+            float:left;
+        }
     </style>
     <title>Inserimento nuovo reperto</title>
 </head>
@@ -21,7 +24,9 @@
         }
     </div>
 
-
+    <div class="back">
+        <button type="submit" class="btn btn-dark"  onclick="location.href='/User/'"> back </button>
+    </div>
     <script>
         function getSelected(btn) {
             console.log(btn);
