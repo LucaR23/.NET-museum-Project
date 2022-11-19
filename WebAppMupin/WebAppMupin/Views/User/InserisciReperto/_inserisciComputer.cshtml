@@ -1,0 +1,32 @@
+﻿@model WebAppMupin.Models.Reperti.Computer
+
+<h3>Inserimento nuovo Computer</h3>
+<h6>I campi contrassegnati da * sono obbligatori</h6>
+
+<form>
+    <label> Identificativo (*) </label>
+    @Html.TextBoxFor(c => c.Identificativo)
+    <br />
+    <hr />
+    <label> Nome del Modello  (*) </label>
+    @Html.TextBoxFor(c => c.NomeModello)
+    <br />
+    <hr />
+    <label> Sistema Operativo (*) </label>
+    @Html.TextBoxFor(c => c.SistemaOperativo)
+    <br />
+    <hr />
+    <label> CPU (*) </label>
+    @Html.TextBoxFor(c => c.Cpu)
+    <br />
+    <hr />
+    <label> Anno  (*) </label>
+    @Html.TextBoxFor(c => c.Anno)
+    <br />
+    <hr />
+    <label> Sistema Operativo (*) </label>
+    @Html.TextBoxFor(c => c.Ram)
+    <br />
+    <hr />
+
+</form>

@@ -16,5 +16,7 @@ namespace WebAppMupin.Models.Reperti
         public string Ram { get; set; }
         public string HardDisk { get; set; }    
         public string SistemaOperativo { get; set; }
+        public RepertoDetail detail { get; set; }
+
     }
 }

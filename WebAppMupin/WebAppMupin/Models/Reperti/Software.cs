@@ -12,6 +12,6 @@ namespace WebAppMupin.Models.Reperti
         public string sistemaOperativo { get; set; }
         public string tipoSoftware { get; set; }
         public string supporto { get; set; }
-
+        public RepertoDetail detail { get; set; }
     }
 }

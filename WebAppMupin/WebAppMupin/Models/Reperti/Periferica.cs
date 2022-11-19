@@ -11,6 +11,6 @@ namespace WebAppMupin.Models.Reperti
         public string Identificativo { get; set; }
         public string nomeModello { get; set; }
         public string Tipologia { get; set; }
-
+        public RepertoDetail detail { get; set; }
     }
 }

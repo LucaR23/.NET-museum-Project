@@ -12,7 +12,7 @@ namespace WebAppMupin.Models.Reperti
         public string Titolo { get; set; }
         public string numeroRivista { get; set; }
         public string Anno { get; set; }
-        public string casaEditrice { get; set; }    
-
+        public string casaEditrice { get; set; }
+        public RepertoDetail detail { get; set; }
     }
 }

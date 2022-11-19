@@ -15,7 +15,7 @@ namespace WebAppMupin.Models.Reperti
         public string AnnoPubblicazione { get; set; }
         public string numeroPagine { get; set; }
         public string ISBN { get; set; }
-
+        public RepertoDetail detail { get; set; }
 
     }
 }

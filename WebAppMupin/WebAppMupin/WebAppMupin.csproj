@@ -299,6 +299,11 @@
     <Content Include="Views\User\_DetailReperti.cshtml" />
     <Content Include="Views\Administrator\_NewUser.cshtml" />
     <Content Include="Views\User\NewReperto.cshtml" />
+    <Content Include="Views\User\InserisciReperto\_inserisciComputer.cshtml" />
+    <Content Include="Views\User\InserisciReperto\_inserisciLibro.cshtml" />
+    <Content Include="Views\User\InserisciReperto\_inserisciPeriferiche.cshtml" />
+    <Content Include="Views\User\InserisciReperto\_inserisciRivista.cshtml" />
+    <Content Include="Views\User\InserisciReperto\_inserisciSoftware.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

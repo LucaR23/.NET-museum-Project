@@ -13,6 +13,9 @@
         .back{
             float:left;
         }
+        #main{
+            margin-top:5%;
+        }
     </style>
     <title>Inserimento nuovo reperto</title>
 </head>
@@ -20,29 +23,34 @@
     <div class="container" id="container">
         @foreach (string s in Model)
         {
-            <button type="button" class="btn btn-info" onclick="getSelected('@s.ToString()')">@s.ToString()</button>
+            <button type="submit" class="btn btn-info" onclick="getSelected('@s.ToString()')">@s.ToString()</button>
         }
     </div>
 
     <div class="back">
         <button type="submit" class="btn btn-dark"  onclick="location.href='/User/'"> back </button>
     </div>
+
+    <div id="main">
+
+
+    </div>
+
     <script>
         function getSelected(btn) {
             console.log(btn);
-
             $.ajax({
                 url: "/User/Insert",
+                type: "GET",
                 data: { ins: btn },
+                success: function (dt) {
+                    $('#main').html(dt);
+                },
                 error: function () {
                     alert("Internal Error ");
-                }
+                }          
             });
         }
-
-
-       
-  
     </script>
 </body>
 
