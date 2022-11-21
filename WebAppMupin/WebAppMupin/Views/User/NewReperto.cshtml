@@ -16,6 +16,9 @@
         #main{
             margin-top:5%;
         }
+        button{
+            margin:1%;
+        }
     </style>
     <title>Inserimento nuovo reperto</title>
 </head>
@@ -28,31 +31,27 @@
     </div>
 
     <div class="back">
-        <button type="submit" class="btn btn-dark"  onclick="location.href='/User/'"> back </button>
+        <button type="submit" class="btn btn-dark" onclick="location.href='/User/'"> back </button>
     </div>
+    <form>
+        <div id="main">
 
-    <div id="main">
 
+        </div>
+    </form>
 
-    </div>
+    <button type="button" id="AddDetail" class="btn btn-info"> <i class="bi bi-plus-square"></i> Dettagli</button>
+    <button type="button" id="hideDetail" class="btn btn-danger" style="float:right"><i class="bi bi-dash-square"> Mostra meno </i></button>
+    <form enctype="multipart/form-data">
+        <div id="insertDetail">
 
-    <script>
-        function getSelected(btn) {
-            console.log(btn);
-            $.ajax({
-                url: "/User/Insert",
-                type: "GET",
-                data: { ins: btn },
-                success: function (dt) {
-                    $('#main').html(dt);
-                },
-                error: function () {
-                    alert("Internal Error ");
-                }          
-            });
-        }
-    </script>
+        </div>
+    </form>
+
+    <button type="button" id="submitInsert" class="btn btn-warning"> Inserisci</button>
+
 </body>
 
+<script src="~/MyScript/insertReperto.js"> </script>
 </html>
 

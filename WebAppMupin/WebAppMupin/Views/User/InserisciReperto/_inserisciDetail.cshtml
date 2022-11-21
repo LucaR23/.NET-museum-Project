@@ -1,0 +1,17 @@
+﻿@model WebAppMupin.Models.Reperti.RepertoDetail
+
+
+    <label> Note   </label>
+    @Html.TextBoxFor(d => d.Note)
+    <br />
+    <hr />
+    <label> URL  </label>
+    @Html.TextBoxFor(d => d.Url)
+    <br />
+    <hr />
+    <label>  TAG  </label>
+    @Html.TextBoxFor(d => d.Tag)
+    <br />
+    <hr />
+    <label> Immagine </label>
+    @Html.TextBoxFor(d => d.Immagine, new { type = "file" })

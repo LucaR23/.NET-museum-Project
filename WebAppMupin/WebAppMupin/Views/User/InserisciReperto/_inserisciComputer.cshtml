@@ -3,13 +3,17 @@
 <h3>Inserimento nuovo Computer</h3>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-<form>
+
     <label> Identificativo (*) </label>
     @Html.TextBoxFor(c => c.Identificativo)
     <br />
     <hr />
     <label> Nome del Modello  (*) </label>
     @Html.TextBoxFor(c => c.NomeModello)
+    <br />
+    <hr />
+    <label> Anno  (*) </label>
+    @Html.TextBoxFor(c => c.Anno)
     <br />
     <hr />
     <label> Sistema Operativo (*) </label>
@@ -20,13 +24,22 @@
     @Html.TextBoxFor(c => c.Cpu)
     <br />
     <hr />
-    <label> Anno  (*) </label>
-    @Html.TextBoxFor(c => c.Anno)
+    <label>  Velocità processore  (*) </label>
+    @Html.TextBoxFor(c => c.VelocitaHz)
     <br />
     <hr />
-    <label> Sistema Operativo (*) </label>
+    <label> Capacità RAM (*) </label>
     @Html.TextBoxFor(c => c.Ram)
     <br />
     <hr />
+    <label> Capacità Hard Disk </label>
+    @Html.TextBoxFor(c => c.HardDisk)
+    <br />
+    <hr />
+    <label> Sistema Operativo </label>
+    @Html.TextBoxFor(c => c.Ram)
+    <br />
+    <hr />
+    
 
-</form>
+

@@ -18,7 +18,6 @@ namespace WebAppMupin.Controllers
         public ActionResult Index()
         {
           List<HomeUser> list = getinfo();
-            
             return View("HomeUser",list);
         }
 
@@ -162,6 +161,11 @@ namespace WebAppMupin.Controllers
                 {
                     Software s  = new Software();
                     return PartialView("InserisciReperto/_inserisciSoftware",s);
+                }
+                if(ins == "repertodetail")
+                {
+                    RepertoDetail rd = new RepertoDetail();
+                    return PartialView("InserisciReperto/_inserisciDetail",rd);
                 }
             }
             else

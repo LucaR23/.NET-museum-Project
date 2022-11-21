@@ -3,5 +3,32 @@
 <h4>Inserimento nuovo Libro</h4>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-<form>
-</form>
+
+    <label> Identificativo (*) </label>
+    @Html.TextBoxFor(l => l.Identificativo)
+    <br />
+    <hr />
+    <label> ISBN (*) </label>
+    @Html.TextBoxFor(l => l.ISBN)
+    <br />
+    <hr />
+    <label> Titolo libro (*) </label>
+    @Html.TextBoxFor(l => l.Titolo)
+    <br />
+    <hr />
+    <label> Autori (*) </label>
+    @Html.TextBoxFor(l => l.autori)
+    <br />
+    <hr />
+    <label> Casa editrice (*) </label>
+    @Html.TextBoxFor(l => l.CasaEditrice)
+    <br />
+    <hr />
+    <label> Anno di pubblicazione (*) </label>
+    @Html.TextBoxFor(l => l.AnnoPubblicazione)
+    <br />
+    <hr />
+    <label> Numero di pagine (*) </label>
+    @Html.TextBoxFor(l => l.numeroPagine)
+    <br />
+    <hr />

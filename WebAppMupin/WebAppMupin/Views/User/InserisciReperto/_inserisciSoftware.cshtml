@@ -3,5 +3,25 @@
 <h4>Inserimento nuovo Software</h4>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-<form>
-</form>
+
+    <label> Identificativo (*) </label>
+    @Html.TextBoxFor(s => s.Identificativo)
+    <br />
+    <hr />
+    <label> Nome del Software (*) </label>
+    @Html.TextBoxFor(s => s.Titolo)
+    <br />
+    <hr />
+    <label> Sistema operrativo di utilizzo (*) </label>
+    @Html.TextBoxFor(s => s.sistemaOperativo)
+    <br />
+    <hr />
+    <label> Tipo di software (*) </label>
+    @Html.TextBoxFor(s => s.tipoSoftware)
+    <br />
+    <hr />
+    <label> tipo di supporto (*) </label>
+    @Html.TextBoxFor(s => s.supporto)
+    <br />
+    <hr />
+

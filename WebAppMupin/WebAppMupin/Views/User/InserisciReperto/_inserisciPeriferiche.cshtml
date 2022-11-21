@@ -4,5 +4,17 @@
 <h4>Inserimento nuovo Periferica</h4>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-<form>
-</form>
+
+    <label> Identificativo (*) </label>
+    @Html.TextBoxFor(p => p.Identificativo)
+    <br />
+    <hr />
+    <label> Nome modello (*) </label>
+    @Html.TextBoxFor(p => p.nomeModello)
+    <br />
+    <hr />
+    <label> tipo di periferica (*) </label>
+    @Html.TextBoxFor(p => p.Tipologia)
+    <br />
+    <hr />
+
