@@ -1,5 +1,4 @@
-﻿
-    $('#AddDetail').toggle(false);
+﻿    $('#AddDetail').toggle(false);
     $('#hideDetail').toggle(false);
     $('#submitInsert').toggle(false);
 

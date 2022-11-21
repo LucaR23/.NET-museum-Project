@@ -3,6 +3,7 @@ using Org.BouncyCastle.Crypto.Digests;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,7 +48,6 @@ namespace WebAppMupin.Controllers
             return homeUsers;
 
         }
-
 
         public ActionResult logout()
         {
@@ -107,8 +107,24 @@ namespace WebAppMupin.Controllers
             return PartialView("_DetailReperti", repertoDetail);
         }
 
-        public ActionResult Update(string id)
+        public ActionResult Update(string upd,string tab)
         {
+            MySqlConnection cnnn = UtilityDB.connection();
+            List<string> proprieta = UtilityDB.getTableColumn(cnnn,tab);
+            string query = UtilityReperti.queryGetRepertoById(tab, upd, proprieta);
+            MySqlCommand cmd = new MySqlCommand(query,cnnn);
+           /* try
+            {
+                cnnn.Open();
+                MySqlDataReader read= cmd.ExecuteReader();
+                //procedura di esecuzione da completare
+            }catch(MySqlException ex)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }*/
+            object l = UtilityReperti.getModelfromString(tab);
+            Debug.WriteLine(l.ToString());
+
             return View();
 
         }
@@ -172,7 +188,7 @@ namespace WebAppMupin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View();    
+            return View();      // -> not Used 
         }
 
         public ActionResult New()

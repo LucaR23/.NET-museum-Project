@@ -231,6 +231,7 @@
     <Content Include="Global.asax" />
     <Content Include="Immagini\vettore-dell-icona-del-museo-isolato-su-fondo-bianco-concetto-di-logo-125790489.jpg" />
     <Content Include="info.txt" />
+    <Content Include="MyScript\insertReperto.js" />
     <Content Include="MyScript\reperti.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

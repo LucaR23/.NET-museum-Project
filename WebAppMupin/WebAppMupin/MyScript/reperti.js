@@ -44,3 +44,26 @@ $(".btn-del").on("click", function () {
         })
     }
 });
+
+$(".modifica").on("click", function () {
+    let id = $(this).closest("tr").find("td").eq(0).html();
+    const getTabella = window.location.search.split('=');
+    let tabella = getTabella[1];
+    $.ajax({
+        url: "/User/Update",
+        type: 'GET',
+        data:{
+        upd: id,
+        tab: tabella
+    },
+        success: function (data) {
+
+        },
+        error: function () {
+            alert("internal error");
+        }
+    })
+
+    
+
+});

@@ -41,6 +41,21 @@ namespace WebAppMupin
            return tables;
         }
 
+        public static string queryGetRepertoById(string tabella,string id, List<string> valori)
+        {
+            string query = "SELECT ";
+            foreach (string cate in valori)
+            {
+                if (cate != "Id_catalogo")
+                {
+                    query += cate + ",";
+                }
+            }
+            string querydef = query.Remove(query.Length - 1);
+            querydef += " FROM " + tabella+ " WHERE Identificativo = '"+id.ToString()+"';";
+            return querydef;
+        }
+
         public static string generateQueryDelete(string tabella,string id)
         {
             string query = "DELETE FROM " + tabella.ToString() + " WHERE Identificativo= '"+id.ToString()+"';";
@@ -51,6 +66,13 @@ namespace WebAppMupin
         {
             string query = "";
             return query;
+        }
+
+        public static object getModelfromString(string type)
+
+        {
+            Type t = Type.GetType(type);
+            return Activator.CreateInstance(t);   // don't work
         }
       
     }
