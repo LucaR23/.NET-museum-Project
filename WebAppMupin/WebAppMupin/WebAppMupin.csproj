@@ -245,6 +245,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsertController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\NewUser.cs" />
     <Compile Include="Models\Reperti\Computer.cs" />
@@ -300,12 +301,12 @@
     <Content Include="Views\User\_DetailReperti.cshtml" />
     <Content Include="Views\Administrator\_NewUser.cshtml" />
     <Content Include="Views\User\NewReperto.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciComputer.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciLibro.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciPeriferiche.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciRivista.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciSoftware.cshtml" />
-    <Content Include="Views\User\InserisciReperto\_inserisciDetail.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciComputer.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciLibro.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciPeriferiche.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciRivista.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciSoftware.cshtml" />
+    <Content Include="Views\Insert\InserisciReperto\_inserisciDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

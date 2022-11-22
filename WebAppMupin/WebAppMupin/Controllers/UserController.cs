@@ -122,9 +122,8 @@ namespace WebAppMupin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }*/
-            object l = UtilityReperti.getModelfromString(tab);
-            Debug.WriteLine(l.ToString());
-
+       //     object l = UtilityReperti.getModelfromString(tab);
+       
             return View();
 
         }
@@ -147,50 +146,7 @@ namespace WebAppMupin.Controllers
             }              
         }
 
-        public ActionResult Insert(string ins)
-        {
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> tab = UtilityReperti.getTableName(conn);
-            if (tab.Contains(ins))
-            {
-                if (ins == "computer")
-                {
-                    Computer c = new Computer();
-                    return PartialView("InserisciReperto/_inserisciComputer",c);
-                }
-                if (ins == "libri")
-                {
-                    Libro l = new Libro();
-                    return PartialView("InserisciReperto/_inserisciLibro",l);
-                }
-                if (ins == "periferiche")
-                {
-                    Periferica p = new Periferica();
-                    return PartialView("InserisciReperto/_inserisciPeriferiche",p);
-                }
-                if (ins == "riviste")
-                {
-                    Rivista r = new Rivista();
-                    return PartialView("InserisciReperto/_inserisciRivista",r);
-                }
-                if (ins == "software")
-                {
-                    Software s  = new Software();
-                    return PartialView("InserisciReperto/_inserisciSoftware",s);
-                }
-                if(ins == "repertodetail")
-                {
-                    RepertoDetail rd = new RepertoDetail();
-                    return PartialView("InserisciReperto/_inserisciDetail",rd);
-                }
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            return View();      // -> not Used 
-        }
-
+    
         public ActionResult New()
         {
             MySqlConnection cnn = UtilityDB.connection();
@@ -200,5 +156,6 @@ namespace WebAppMupin.Controllers
             tabelle.Remove("repertodetail");
             return View("NewReperto",tabelle);
         }
+
     }
 }

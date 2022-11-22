@@ -1,10 +1,12 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
 using System.Web;
+using WebAppMupin.Models.Reperti;
 
 namespace WebAppMupin
 {
@@ -68,12 +70,21 @@ namespace WebAppMupin
             return query;
         }
 
-        public static object getModelfromString(string type)
-
+        public static string generateQueryInsert(string tab,List<string> campi)
         {
-            Type t = Type.GetType(type);
-            return Activator.CreateInstance(t);   // don't work
+            // INSERT INTO `periferiche`(`Id_catalogo`, `Identificativo`, `nome_modello`, `tipologia`) VALUES('[value-1]', '[value-2]', '[value-3]', '[value-4]')
+            string query = "INSERT INTO " + tab.ToString()+"( ";
+            foreach(string field in campi)
+            {
+                query += field+", ";
+            }
+            query.Remove(query.Length - 1);
+
+            query += " ) VALUES ( ";
+
+            return query;
         }
-      
+
+
     }
 }

@@ -3,43 +3,43 @@
 <h3>Inserimento nuovo Computer</h3>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-
-    <label> Identificativo (*) </label>
+<form  id="form" enctype="multipart/form-data" action="@Url.Action("InsertComputer","Insert")" >
+    <label for="Identificativo"> Identificativo (*) </label>
     @Html.TextBoxFor(c => c.Identificativo)
     <br />
     <hr />
-    <label> Nome del Modello  (*) </label>
+    <label for="NomeModello"> Nome del Modello  (*) </label>
     @Html.TextBoxFor(c => c.NomeModello)
     <br />
     <hr />
-    <label> Anno  (*) </label>
+    <label for="Anno"> Anno  (*) </label>
     @Html.TextBoxFor(c => c.Anno)
     <br />
     <hr />
-    <label> Sistema Operativo (*) </label>
+    <label for="SistemaOperativo"> Sistema Operativo (*) </label>
     @Html.TextBoxFor(c => c.SistemaOperativo)
     <br />
     <hr />
-    <label> CPU (*) </label>
+    <label for="Cpu"> CPU (*) </label>
     @Html.TextBoxFor(c => c.Cpu)
     <br />
     <hr />
-    <label>  Velocità processore  (*) </label>
+    <label for="VelocitaHz">  Velocità processore  (*) </label>
     @Html.TextBoxFor(c => c.VelocitaHz)
     <br />
     <hr />
-    <label> Capacità RAM (*) </label>
+    <label for="Ram"> Capacità RAM (*) </label>
     @Html.TextBoxFor(c => c.Ram)
     <br />
     <hr />
-    <label> Capacità Hard Disk </label>
+    <label for="hardDisk"> Capacità Hard Disk </label>
     @Html.TextBoxFor(c => c.HardDisk)
     <br />
     <hr />
-    <label> Sistema Operativo </label>
+    <label for="Ram"> Capacità RAM </label>
     @Html.TextBoxFor(c => c.Ram)
     <br />
     <hr />
-    
+</form>   
 
 

@@ -3,25 +3,25 @@
 <h4>Inserimento nuovo Software</h4>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-
-    <label> Identificativo (*) </label>
+<form id="form" enctype="multipart/form-data" action="@Url.Action("InsertSoftware","Insert")">
+    <label for="Identificativo"> Identificativo (*) </label>
     @Html.TextBoxFor(s => s.Identificativo)
     <br />
     <hr />
-    <label> Nome del Software (*) </label>
+    <label for="Titolo">  Nome del Software (*) </label>
     @Html.TextBoxFor(s => s.Titolo)
     <br />
     <hr />
-    <label> Sistema operrativo di utilizzo (*) </label>
+    <label for="sistemaOperativo"> Sistema operrativo di utilizzo (*) </label>
     @Html.TextBoxFor(s => s.sistemaOperativo)
     <br />
     <hr />
-    <label> Tipo di software (*) </label>
+    <label for="tipoSoftware"> Tipo di software (*) </label>
     @Html.TextBoxFor(s => s.tipoSoftware)
     <br />
     <hr />
-    <label> tipo di supporto (*) </label>
+    <label for="supporto"> tipo di supporto (*) </label>
     @Html.TextBoxFor(s => s.supporto)
     <br />
     <hr />
-
+</form>

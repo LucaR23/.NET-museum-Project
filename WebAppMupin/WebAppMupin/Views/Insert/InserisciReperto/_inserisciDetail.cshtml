@@ -1,17 +1,18 @@
 ﻿@model WebAppMupin.Models.Reperti.RepertoDetail
 
-
-    <label> Note   </label>
+<form id="formDetail" enctype="multipart/form-data" action="@Url.Action("InsertDetail","Insert")">
+    <label for="Note" > Note   </label>
     @Html.TextBoxFor(d => d.Note)
     <br />
     <hr />
-    <label> URL  </label>
+    <label for="Url"> URL  </label>
     @Html.TextBoxFor(d => d.Url)
     <br />
     <hr />
-    <label>  TAG  </label>
+    <label for="Tag">  TAG  </label>
     @Html.TextBoxFor(d => d.Tag)
     <br />
     <hr />
-    <label> Immagine </label>
+    <label for="Immagine"> Immagine </label>
     @Html.TextBoxFor(d => d.Immagine, new { type = "file" })
+</form>

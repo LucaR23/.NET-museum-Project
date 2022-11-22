@@ -1,11 +1,11 @@
-﻿    $('#AddDetail').toggle(false);
+﻿    $('#AddDetail').toggle(false);  // hide all button in the DOM
     $('#hideDetail').toggle(false);
     $('#submitInsert').toggle(false);
 
     function getSelected(btn) {
         //  console.log(btn);
         $.ajax({
-            url: "/User/Insert",
+            url: "/Insert/New",
             type: "GET",
             data: { ins: btn },
             success: function (dt) {
@@ -24,12 +24,13 @@
     let ADD = document.getElementById('AddDetail');
         ADD.addEventListener('click', () => {
         $.ajax({
-            url: "/User/Insert",
+            url: "/Insert/New",
             type: "GET",
             data: { ins: 'repertodetail' },
             success: function (dt) {
                 $('#hideDetail').toggle(true);
                 $('#insertDetail').html(dt).toggle(true);
+             
             },
             error: function () {
                 alert("Internal Error ");
@@ -39,7 +40,45 @@
 
     let hide = document.getElementById('hideDetail');
         hide.addEventListener('click', () => {
-        $('#insertDetail').toggle(false);
+        $('#insertDetail').html("");    // remove all the content from DOM and source code
     $('#hideDetail').toggle(false);
     $('#AddDetail').toggle(true);
         })
+
+$("#submitInsert").click(function (e) {
+
+    e.preventDefault();  
+    $.ajax({
+        type: "POST",
+        url: $('#form').attr('action'),
+        data: $('#form').serialize(),
+        success: function (data) {
+            console.log(data);
+            console.log($('#formDetail').children().length)
+       
+        },
+        error: () => {
+            alert("Internal error");
+        }
+    });
+
+    if ($('#formDetail').children().length > 0) {
+
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: $('#formDetail').attr('action'),
+            data: $('#formDetail').serialize(),
+            success: function (data) {
+                console.log(data);
+
+
+            },
+            error: () => {
+                alert("Internal error");
+            }
+        });
+    }
+
+});
+

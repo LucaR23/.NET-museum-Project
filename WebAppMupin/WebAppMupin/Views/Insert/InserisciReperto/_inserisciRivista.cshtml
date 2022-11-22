@@ -3,25 +3,25 @@
 <h4>Inserimento nuovo Rivista</h4>
 <h6>I campi contrassegnati da * sono obbligatori</h6>
 
-
-    <label> Identificativo (*) </label>
+<form id="form" enctype="multipart/form-data" action="@Url.Action("InsertRivista","Insert")">
+    <label for="Identificativo"> Identificativo (*) </label>
     @Html.TextBoxFor(r => r.Identificativo)
     <br />
     <hr />
-    <label> Titolo rivista (*) </label>
+    <label for="Titolo"> Titolo rivista (*) </label>
     @Html.TextBoxFor(r => r.Titolo)
     <br />
     <hr />
-    <label> Numero della rivista (*) </label>
+    <label for="numeroRivista"> Numero della rivista (*) </label>
     @Html.TextBoxFor(r => r.numeroRivista)
     <br />
     <hr />
-    <label> Annp di pubblicazione (*) </label>
+    <label for="Anno"> Annp di pubblicazione (*) </label>
     @Html.TextBoxFor(r => r.Anno)
     <br />
     <hr />
-    <label> Casa editrice (*) </label>
+    <label for="casaEditrice"> Casa editrice (*) </label>
     @Html.TextBoxFor(r => r.casaEditrice)
     <br />
     <hr />
-
+</form>
