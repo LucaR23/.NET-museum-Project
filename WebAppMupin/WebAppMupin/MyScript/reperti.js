@@ -7,7 +7,7 @@ function deleterow(tableID) {                   // necessary to delete the last 
 }
 deleterow('showtable');
 
-$("#showtable").on("click", "#viewBtn", function () {
+$("#showtable").on("click", "#viewBtn", function () {                 // reperto detail
     let id = $(this).closest("tr").find("td").eq(0).html();
     $.ajax({
         url: "/User/Detail",
@@ -22,14 +22,14 @@ $("#showtable").on("click", "#viewBtn", function () {
     });
 });
 
-$(".btn-del").on("click", function () {
+$(".btn-del").on("click", function () {             // delete fields 
     if (confirm("Procedere con l'eliminazione?")) {
         let id = $(this).closest("tr").find("td").eq(0).html();
         const getTabella = window.location.search.split('=');
         let tabella = getTabella[1];
         $.ajax({
             url: "/User/Delete",
-            type: 'GET',
+            type: 'POST',
             data: {
                 del: id,
                 tab: tabella
@@ -38,19 +38,21 @@ $(".btn-del").on("click", function () {
                 alert('Errore impossibile eliminare');
             },
             success: function (data) {
-                alert("Eliminazione eseguita con successo");
-                location.reload();
+                console.log(data);
+                    alert("Eliminazione eseguita con successo");
+                    location.reload();
+                
             }
         })
     }
 });
 
-$(".modifica").on("click", function () {
+$(".modifica").on("click", function () {                      // ajax call to update a fields
     let id = $(this).closest("tr").find("td").eq(0).html();
     const getTabella = window.location.search.split('=');
     let tabella = getTabella[1];
     $.ajax({
-        url: "/User/Update",
+        url: "/Update/GetReperto",
         type: 'GET',
         data:{
         upd: id,

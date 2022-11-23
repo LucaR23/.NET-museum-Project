@@ -76,13 +76,13 @@ namespace WebAppMupin
             string query = "INSERT INTO " + tab.ToString()+"( ";
             foreach(string field in campi)
             {
-                query += field+", ";
+                query += field+",";
             }
-            query.Remove(query.Length - 1);
+           string queryMod= query.Remove(query.Length - 1);
 
-            query += " ) VALUES ( ";
+            queryMod += " ) VALUES ( ";
 
-            return query;
+            return queryMod;
         }
 
 

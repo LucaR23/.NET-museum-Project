@@ -22,7 +22,6 @@ namespace WebAppMupin.Controllers
             return View("HomeUser",list);
         }
 
-
         private List<HomeUser> getinfo()
         {
             MySqlConnection cnn = UtilityDB.connection();
@@ -41,8 +40,6 @@ namespace WebAppMupin.Controllers
                     nome = apt["Nome"].ToString(),
                     image = (byte[])apt["immagine"]
                 });
-                
-
             }
             cnn.Close();
             return homeUsers;
@@ -107,27 +104,6 @@ namespace WebAppMupin.Controllers
             return PartialView("_DetailReperti", repertoDetail);
         }
 
-        public ActionResult Update(string upd,string tab)
-        {
-            MySqlConnection cnnn = UtilityDB.connection();
-            List<string> proprieta = UtilityDB.getTableColumn(cnnn,tab);
-            string query = UtilityReperti.queryGetRepertoById(tab, upd, proprieta);
-            MySqlCommand cmd = new MySqlCommand(query,cnnn);
-           /* try
-            {
-                cnnn.Open();
-                MySqlDataReader read= cmd.ExecuteReader();
-                //procedura di esecuzione da completare
-            }catch(MySqlException ex)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }*/
-       //     object l = UtilityReperti.getModelfromString(tab);
-       
-            return View();
-
-        }
-
         public ActionResult Delete(string del,string tab)
         {
             MySqlConnection connection = UtilityDB.connection();
@@ -139,7 +115,7 @@ namespace WebAppMupin.Controllers
                 connection.Open();
                 cnn.ExecuteNonQuery();
                 connection.Close();
-                return Json(true);
+                return Json("Eliminato");
             }catch(MySqlException ex)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);

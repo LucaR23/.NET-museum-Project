@@ -45,7 +45,7 @@
     $('#AddDetail').toggle(true);
         })
 
-$("#submitInsert").click(function (e) {
+$("#submitInsert").click(function (e) {    //  ajax call to insert new fields
 
     e.preventDefault();  
     $.ajax({
@@ -53,9 +53,7 @@ $("#submitInsert").click(function (e) {
         url: $('#form').attr('action'),
         data: $('#form').serialize(),
         success: function (data) {
-            console.log(data);
-            console.log($('#formDetail').children().length)
-       
+            console.log(data);     
         },
         error: () => {
             alert("Internal error");
@@ -63,16 +61,16 @@ $("#submitInsert").click(function (e) {
     });
 
     if ($('#formDetail').children().length > 0) {
-
-        e.preventDefault();
+       // console.log($('#Identificativo').val());
         $.ajax({
             type: "POST",
-            url: $('#formDetail').attr('action'),
-            data: $('#formDetail').serialize(),
+            url: $('#formDetail').attr('action'),   
+            data: {
+              id:  $('#Identificativo').val(),
+              dati:  $('#formDetail').serialize()   
+            },
             success: function (data) {
                 console.log(data);
-
-
             },
             error: () => {
                 alert("Internal error");

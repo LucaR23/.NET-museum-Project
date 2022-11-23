@@ -11,11 +11,7 @@ namespace WebAppMupin.Controllers
 {
     public class InsertController : Controller
     {
-        // GET: Insert
-        /* public ActionResult Index()
-         {
-             return View();
-         }*/
+        
         public ActionResult New(string ins)
         {
             MySqlConnection conn = UtilityDB.connection();
@@ -62,57 +58,65 @@ namespace WebAppMupin.Controllers
 
         public ActionResult InsertComputer(Computer c)
         {
-            if (c == null)
+            if (c.Identificativo == null || c.NomeModello==null)
             {
                 return Json("compilare i campi necessari");
             }
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, "computer");
-            colonne.Remove("`Id_catalogo");
-            string query = UtilityReperti.generateQueryInsert("computer", colonne);
-            // passo ad una procedura che mi crea la query 
+            string query = getInsertstring("computer");
+            //INSERT INTO computer( Identificativo,Nome_modello,anno,CPU,velocita_HZ,RAM,Hard_disk,sistema_operativo ) VALUES   *query generata*
+            var id = c.Identificativo;
+            var modello = c.NomeModello;
+            var anno = c.Anno;
+            var cpu = c.Cpu;
+            var hz = c.VelocitaHz;
+            var ram = c.Ram;
+            var disco = c.HardDisk;
+            var so = c.SistemaOperativo;
+            query+=id+","+modello + "," + anno + "," + cpu + "," + hz + "," + ram + "," + disco + "," + so+" );";
             // trovare un modo di fare il binding 
             // begin transaction
             // fine e ritorno esito all'utente
-            return Json(c);
+            return Json(query);
         }
         public ActionResult InsertLibro(Libro l)
         {
 
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, "libri");
-            colonne.Remove("`Id_catalogo");
-            string query  = UtilityReperti.generateQueryInsert("libri",colonne);
+          string query=  getInsertstring("libro");
+           
 
             return View();
         }
         public ActionResult InsertPeriferica(Periferica p)
         {
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, "periferiche");
-            colonne.Remove("`Id_catalogo");
-            string query = UtilityReperti.generateQueryInsert("periferiche", colonne);
+            string query = getInsertstring("periferiche");
             return View();
         }
         public ActionResult InsertRivista(Rivista r)
         {
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, "riviste");
-
+            string query = getInsertstring("riviste");
             return View();
         }
         public ActionResult InsertSoftware(Software s)
         {
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, "software");
+            string query = getInsertstring("software");
 
             return View();
         }
 
-        public ActionResult InsertDetail(RepertoDetail rd)
+        public ActionResult InsertDetail(RepertoDetail rd,string idReperto)
         {
+            string query = getInsertstring("repertodetail");
 
             return Json(rd);
+        }
+
+        public string getInsertstring(string reperto)
+        {
+            MySqlConnection conn = UtilityDB.connection();
+            List<string> colonne = UtilityDB.getTableColumn(conn, reperto);
+             colonne.Remove("Id_catalogo");
+            string query = UtilityReperti.generateQueryInsert(reperto, colonne);
+            return query;
         }
     }
 }
