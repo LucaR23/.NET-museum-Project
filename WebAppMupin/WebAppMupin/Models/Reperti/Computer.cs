@@ -16,7 +16,19 @@ namespace WebAppMupin.Models.Reperti
         public string Ram { get; set; }
         public string HardDisk { get; set; }    
         public string SistemaOperativo { get; set; }
-        public RepertoDetail detail { get; set; }
+      
+        public string Insert(Computer c)
+        {
+            string query = "INSERT INTO computer (Identificativo,Nome_modello,anno,CPU,velocita_HZ,RAM,Hard_disk,sistema_operativo) VALUES ('"
+            + c.Identificativo+ "','" + c.NomeModello+ "','" + c.Anno+ "','" + c.Cpu+ "','" + c.VelocitaHz+ "','" + c.Ram+ "','" + c.HardDisk+ "','" + c.SistemaOperativo + "');";
+                return query;
+        }
 
+        public string Update(Computer c)
+        {
+            string query = "UPDATE computer SET Nome_modello='"  + c.NomeModello + "'," +"anno='" + c.Anno + "'," + "CPU=' "+ c.Cpu + "'," +"+ velocita_HZ='"+ c.VelocitaHz + "',"+"RAM='"
+                + c.Ram + "'," + "Hard_disk='" + c.HardDisk + "'," +"sistema_operativo='" + c.SistemaOperativo + "'WHERE Identificativo= '"+c.Identificativo +"' ;";
+            return query;
+        }
     }
 }

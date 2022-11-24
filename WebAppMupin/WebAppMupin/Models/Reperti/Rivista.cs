@@ -13,6 +13,13 @@ namespace WebAppMupin.Models.Reperti
         public string numeroRivista { get; set; }
         public string Anno { get; set; }
         public string casaEditrice { get; set; }
-        public RepertoDetail detail { get; set; }
+       // public RepertoDetail detail { get; set; }
+
+        public string Insert(Rivista r)
+        {
+            string query = "INSERT INTO riviste (Identificativo,titolo,numero_rivista,anno,casa_editrice) VALUES ('"
+           + r.Identificativo + "','" + r.Titolo + "','" + r.numeroRivista + "','" + r.Anno + "','" + r.casaEditrice + "');";
+            return query;
+        }
     }
 }

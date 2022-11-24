@@ -53,7 +53,8 @@ $("#submitInsert").click(function (e) {    //  ajax call to insert new fields
         url: $('#form').attr('action'),
         data: $('#form').serialize(),
         success: function (data) {
-            console.log(data);     
+            //alert(data); 
+            console.log(data);
         },
         error: () => {
             alert("Internal error");
@@ -66,8 +67,10 @@ $("#submitInsert").click(function (e) {    //  ajax call to insert new fields
             type: "POST",
             url: $('#formDetail').attr('action'),   
             data: {
-              id:  $('#Identificativo').val(),
-              dati:  $('#formDetail').serialize()   
+                id: $('#Identificativo').val(),   // manca l'immagine
+                note: $('#Note').val(),
+                url: $('#Url').val(),
+                tag: $('#Tag').val(),
             },
             success: function (data) {
                 console.log(data);

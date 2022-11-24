@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using WebAppMupin.Models.Reperti;
@@ -11,7 +12,7 @@ namespace WebAppMupin.Controllers
 {
     public class InsertController : Controller
     {
-        
+
         public ActionResult New(string ins)
         {
             MySqlConnection conn = UtilityDB.connection();
@@ -58,65 +59,154 @@ namespace WebAppMupin.Controllers
 
         public ActionResult InsertComputer(Computer c)
         {
-            if (c.Identificativo == null || c.NomeModello==null)
+            if (c.Identificativo == null || c.NomeModello == null || c.Anno==null || c.SistemaOperativo == null || c.Cpu==null || c.VelocitaHz ==null)   // varifico che i campi siano compilati
             {
                 return Json("compilare i campi necessari");
             }
-            string query = getInsertstring("computer");
-            //INSERT INTO computer( Identificativo,Nome_modello,anno,CPU,velocita_HZ,RAM,Hard_disk,sistema_operativo ) VALUES   *query generata*
-            var id = c.Identificativo;
-            var modello = c.NomeModello;
-            var anno = c.Anno;
-            var cpu = c.Cpu;
-            var hz = c.VelocitaHz;
-            var ram = c.Ram;
-            var disco = c.HardDisk;
-            var so = c.SistemaOperativo;
-            query+=id+","+modello + "," + anno + "," + cpu + "," + hz + "," + ram + "," + disco + "," + so+" );";
-            // trovare un modo di fare il binding 
-            // begin transaction
-            // fine e ritorno esito all'utente
-            return Json(query);
+
+            bool esiste = existReperto(c.Identificativo, "computer");
+            if (esiste)
+            {
+                return Json("identificativo già presente");
+            }
+
+            string query = c.Insert(c); 
+            bool inserisci = doInsert(query);
+            if (inserisci)
+                return Json("inserito nuovo reperto con identificativo " + c.Identificativo.ToString()) ;
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
         public ActionResult InsertLibro(Libro l)
         {
+            if (l.Identificativo == null || l.ISBN == null || l.Titolo == null || l.autori== null || l.CasaEditrice == null || l.AnnoPubblicazione == null || l.numeroPagine==null)   
+            {
+                return Json("compilare i campi necessari");
+            }
 
-          string query=  getInsertstring("libro");
-           
+            bool esiste = existReperto(l.Identificativo, "libri");
+            if (esiste)
+            {
+                return Json("identificativo già presente");
+            }
 
-            return View();
+            string query = l.Insert(l);
+            bool inserisci = doInsert(query);
+            if (inserisci)
+                return Json("inserito nuovo reperto con identificativo " + l.Identificativo.ToString());
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
         public ActionResult InsertPeriferica(Periferica p)
         {
-            string query = getInsertstring("periferiche");
-            return View();
+            if (p.Identificativo == null || p.nomeModello == null || p.Tipologia == null)   
+            {
+                return Json("compilare i campi necessari");
+            }
+
+            bool esiste = existReperto(p.Identificativo, "periferiche");
+            if (esiste)
+            {
+                return Json("identificativo già presente");
+            }
+
+            string query = p.Insert(p);
+            bool inserisci = doInsert(query);
+            if (inserisci)
+                return Json("inserito nuovo reperto con identificativo " + p.Identificativo.ToString());
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
         public ActionResult InsertRivista(Rivista r)
         {
-            string query = getInsertstring("riviste");
-            return View();
+            if (r.Identificativo == null || r.Titolo == null || r.numeroRivista == null || r.Anno == null || r.casaEditrice == null)   
+            {
+                return Json("compilare i campi necessari");
+            }
+
+            bool esiste = existReperto(r.Identificativo, "riviste");
+            if (esiste)
+            {
+                return Json("identificativo già presente");
+            }
+
+            string query = r.Insert(r);
+            bool inserisci = doInsert(query);
+            if (inserisci)
+                return Json("inserito nuovo reperto con identificativo " + r.Identificativo.ToString());
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
         public ActionResult InsertSoftware(Software s)
         {
-            string query = getInsertstring("software");
+            if (s.Identificativo == null || s.supporto == null || s.sistemaOperativo == null || s.Titolo == null || s.tipoSoftware == null)
+            {
+                return Json("compilare i campi necessari");
+            }
 
-            return View();
+            bool esiste = existReperto(s.Identificativo, "riviste");
+            if (esiste)
+            {
+                return Json("identificativo già presente");
+            }
+
+            string query = s.Insert(s);
+            bool inserisci = doInsert(query);
+            if (inserisci)
+                return Json("inserito nuovo reperto con identificativo " + s.Identificativo.ToString());
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+        }
+        public ActionResult InsertDetail(string id, string note, string url, string tag)
+        {
+            RepertoDetail rd = new RepertoDetail();
+            rd.Id = id.ToString();
+            rd.Note = note.ToString();
+            rd.Url = url.ToString();
+            rd.Tag = tag.ToString();
+
+            string query = rd.Insert(rd);
+
+            return Json(query);
         }
 
-        public ActionResult InsertDetail(RepertoDetail rd,string idReperto)
+        public bool doInsert(string query)
         {
-            string query = getInsertstring("repertodetail");
-
-            return Json(rd);
+            MySqlConnection cnn = UtilityDB.connection();
+            MySqlCommand cmd = new MySqlCommand(query, cnn);
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                return true;      // inserted
+            }
+            catch (Exception ex)
+            {
+                return false;   // error
+            }
         }
 
-        public string getInsertstring(string reperto)
+        public bool existReperto(string id,string categoria)
         {
-            MySqlConnection conn = UtilityDB.connection();
-            List<string> colonne = UtilityDB.getTableColumn(conn, reperto);
-             colonne.Remove("Id_catalogo");
-            string query = UtilityReperti.generateQueryInsert(reperto, colonne);
-            return query;
+           MySqlConnection cnnn= UtilityDB.connection();
+            List<string> colonne = UtilityDB.getTableColumn(cnnn, categoria);
+            string query = UtilityReperti.queryGetRepertoById(categoria, id, colonne);
+            MySqlCommand cmd= new MySqlCommand(query, cnnn);
+
+            cnnn.Open();
+            MySqlDataReader read = cmd.ExecuteReader();
+            if (read.Read())
+            {
+                cnnn.Close();
+                return true;   // exixt  identifier
+            }
+            else
+            {
+                cnnn.Close(); 
+                return false;    // not exist identifier
+            }
+           
         }
     }
 }

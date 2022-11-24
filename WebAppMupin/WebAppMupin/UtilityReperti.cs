@@ -43,10 +43,10 @@ namespace WebAppMupin
            return tables;
         }
 
-        public static string queryGetRepertoById(string tabella,string id, List<string> valori)
+        public static string queryGetRepertoById(string tabella,string id, List<string> colonneTabella)
         {
             string query = "SELECT ";
-            foreach (string cate in valori)
+            foreach (string cate in colonneTabella)
             {
                 if (cate != "Id_catalogo")
                 {

@@ -12,5 +12,12 @@ namespace WebAppMupin.Models.Reperti
         public string Url { get; set; }
         public string Tag { get; set; }
         public byte[] Immagine { get; set; }
+
+        public string Insert(RepertoDetail rd)
+        {
+            string query = "INSERT INTO repertodetail (identificativoreperto,note,URL,tag,immagine) VALUES ('"
+    + rd.Id + "','" + rd.Note + "','" + rd.Url + "','" + rd.Tag + "','" + rd.Immagine + "');";
+            return query;
+        }
     }
 }
