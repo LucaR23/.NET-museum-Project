@@ -21,5 +21,11 @@ namespace WebAppMupin.Models.Reperti
            + r.Identificativo + "','" + r.Titolo + "','" + r.numeroRivista + "','" + r.Anno + "','" + r.casaEditrice + "');";
             return query;
         }
+        public string Update(Rivista r)
+        {
+            string query = "UPDATE riviste SET titolo='" + r.Titolo + "'," + "numero_rivista='" + r.numeroRivista + "'," + "anno=' " + r.Anno + "'," + "+ casa_editrice='" + r.casaEditrice + 
+            "' WHERE Identificativo= '" + r.Identificativo + "' ;";
+            return query;
+        }
     }
 }

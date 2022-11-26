@@ -11,10 +11,16 @@ $("#showtable").on("click", "#viewBtn", function () {                 // reperto
     let id = $(this).closest("tr").find("td").eq(0).html();
     $.ajax({
         url: "/User/Detail",
+        type: "POST",
         data: { dt: id },
         success: function (data) {
-            $("#showmodal .modal-dialog").html(data);
-            $("#showmodal").modal("show");
+            if (data.length < 50) {
+                alert(data);
+            }
+            else {
+                $("#showmodal .modal-dialog").html(data);
+                $("#showmodal").modal("show");
+            }
         },
         error: function () {
             alert("No Detail Found");

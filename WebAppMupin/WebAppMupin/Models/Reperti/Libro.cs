@@ -24,5 +24,12 @@ namespace WebAppMupin.Models.Reperti
             return query;
         }
 
+        public string Update(Libro l)
+        {
+            string query = "UPDATE libri SET titolo='" + l.Titolo + "'," + "autori='" + l.autori + "'," + "casa_editrice=' " + l.CasaEditrice + "'," + "+ anno_pubblicazione='" + l.AnnoPubblicazione + "'," + "numero_pagine='"
+                + l.numeroPagine + "'," + "ISBN='" + l.ISBN + "' WHERE Identificativo= '" + l.Identificativo + "' ;";
+            return query;
+        }
+
     }
 }

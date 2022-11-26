@@ -19,5 +19,12 @@ namespace WebAppMupin.Models.Reperti
            + p.Identificativo + "','" + p.nomeModello + "','" + p.Tipologia + "');";
             return query;
         }
+
+        public string Update(Periferica p)
+        {
+            string query = "UPDATE periferiche SET nome_modello='" + p.nomeModello + "'," + "tipologia='" + p.Tipologia 
+               + "' WHERE Identificativo= '" + p.Identificativo + "' ;";
+            return query;
+        }
     }
 }

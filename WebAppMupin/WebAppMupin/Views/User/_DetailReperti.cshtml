@@ -8,12 +8,23 @@
                 </div>
                 <div class="modal-body" style=" text-align: center;">
                     <h6> Immagine</h6>
-                    <img style="width:25%; height: 25%;" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Immagine,0,Model.Immagine.Length))" alt="immagineoo">
+                    @if (Model.Immagine.Length > 0)
+                    {
+                    <img style="width:25%; height: 25%;" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Immagine, 0, Model.Immagine.Length))" alt="immagineoo">
+                    }
                     <h6>Note:</h6>
-                    <p>@Model.Note.ToString() </p>               
+                    @if (Model.Note.Length > 0)
+                    {
+                    <p>@Model.Note.ToString() </p>  
+                    }
+                    @if (Model.Url.Length >0)
+                    {
                     <p><a href="http://@Model.Url">URL</a></p>
+                    }
                     <h6> tag</h6>
+                    @if (Model.Tag.Length >0)
+                    {
                     <p> @Model.Tag.ToString()</p>
-
+                    }
                 </div>
             </div>

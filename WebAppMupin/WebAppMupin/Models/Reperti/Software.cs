@@ -20,5 +20,12 @@ namespace WebAppMupin.Models.Reperti
         + s.Identificativo + "','" + s.Titolo + "','" + s.sistemaOperativo + "','" + s.tipoSoftware + "','" + s.supporto + "');";
             return query;
         }
+
+        public string Update(Software s)
+        {
+            string query = "UPDATE software SET titolo='" + s.Titolo + "'," + "sistema_operativo='" + s.sistemaOperativo + "'," + "tipo_software=' " + s.tipoSoftware + "'," + "+ supporto='" + s.supporto 
+                + "' WHERE Identificativo= '" + s.Identificativo + "' ;";
+            return query;
+        }
     }
 }

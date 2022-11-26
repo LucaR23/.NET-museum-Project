@@ -1,10 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Crypto.Digests;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -81,33 +78,43 @@ namespace WebAppMupin.Controllers
         public ActionResult Detail(string dt)
         {
             string query = "SELECT * FROM repertoDetail WHERE identificativoReperto= @id";
-            MySqlConnection cnn = UtilityDB.connection();
-           
+            MySqlConnection cnn = UtilityDB.connection(); 
             MySqlCommand cmd = new MySqlCommand(query, cnn);
             cmd.Parameters.AddWithValue("@id", dt);
-            cnn.Open();
-            MySqlDataReader dr = cmd.ExecuteReader();
-            
-            RepertoDetail repertoDetail = new RepertoDetail();
-            while (dr.Read())
+            try
             {
-                if (dr != null)
+                cnn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+                RepertoDetail repertoDetail = new RepertoDetail();
+                if (!dr.HasRows)
                 {
-                    repertoDetail.Id = dr["identificativoReperto"].ToString();
-                    repertoDetail.Url = dr["URL"].ToString();
-                    repertoDetail.Note = dr["note"].ToString();
-                    repertoDetail.Tag = dr["tag"].ToString();
-                    repertoDetail.Immagine = (byte[])dr["immagine"];
+                    return Json("Non sono presenti dettagli");
                 }
+                    while (dr.Read())
+                    {
+                        repertoDetail.Id = dr["identificativoReperto"].ToString();
+                        repertoDetail.Url = dr["URL"].ToString();
+                        repertoDetail.Note = dr["note"].ToString();
+                        repertoDetail.Tag = dr["tag"].ToString();
+                        repertoDetail.Immagine = (byte[])dr["immagine"];
+                        return PartialView("_DetailReperti", repertoDetail);
+                    }
+                    dr.Close();
             }
-            cnn.Close();
-            return PartialView("_DetailReperti", repertoDetail);
+            catch (MySqlException ex)
+            {
+                return Json("Non sono presenti dettagli");
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return View();  // -> not used T
         }
 
         public ActionResult Delete(string del,string tab)
         {
             MySqlConnection connection = UtilityDB.connection();
-
             string query = UtilityReperti.generateQueryDelete(tab,del);
             MySqlCommand cnn = new MySqlCommand(query, connection);
             try
@@ -122,7 +129,6 @@ namespace WebAppMupin.Controllers
             }              
         }
 
-    
         public ActionResult New()
         {
             MySqlConnection cnn = UtilityDB.connection();
