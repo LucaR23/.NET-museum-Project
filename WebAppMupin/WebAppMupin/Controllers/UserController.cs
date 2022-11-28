@@ -92,14 +92,27 @@ namespace WebAppMupin.Controllers
                 }
                     while (dr.Read())
                     {
-                        repertoDetail.Id = dr["identificativoReperto"].ToString();
+                    repertoDetail.Id = dr["identificativoReperto"].ToString();
+                    if (dr["URL"] != DBNull.Value)
+                    {
                         repertoDetail.Url = dr["URL"].ToString();
+                    }
+                    if(dr["note"] != DBNull.Value)
+                    {
                         repertoDetail.Note = dr["note"].ToString();
+                    }
+                    if(dr["tag"] != DBNull.Value)
+                    {
                         repertoDetail.Tag = dr["tag"].ToString();
+                    }
+                    if(dr["immagine"] != DBNull.Value)
+                    {
                         repertoDetail.Immagine = (byte[])dr["immagine"];
-                        return PartialView("_DetailReperti", repertoDetail);
                     }
                     dr.Close();
+                    return PartialView("_DetailReperti", repertoDetail);
+                    }
+                 
             }
             catch (MySqlException ex)
             {

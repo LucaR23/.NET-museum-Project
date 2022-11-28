@@ -10,21 +10,37 @@
                     <h6> Immagine</h6>
                     @if (Model.Immagine.Length > 0)
                     {
-                    <img style="width:25%; height: 25%;" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Immagine, 0, Model.Immagine.Length))" alt="immagineoo">
+                        <img style="width:25%; height: 25%;" src="data:image/jpg;base64,@(Convert.ToBase64String(Model.Immagine, 0, Model.Immagine.Length))" alt="immagineoo">
+                    }
+                    else
+                    {
+                        <p></p>
                     }
                     <h6>Note:</h6>
                     @if (Model.Note.Length > 0)
                     {
-                    <p>@Model.Note.ToString() </p>  
+                        <p>@Model.Note.ToString() </p>
                     }
-                    @if (Model.Url.Length >0)
+                    else    // non serve , trova un altro modo
                     {
-                    <p><a href="http://@Model.Url">URL</a></p>
+                        <p></p>
+                    }
+                    @if (Model.Url.Length > 0)
+                    {
+                        <p><a href="http://@Model.Url">URL</a></p>
+                    }
+                    else
+                    {
+                        <p></p>
                     }
                     <h6> tag</h6>
-                    @if (Model.Tag.Length >0)
+                    @if (Model.Tag.Length > 0)
                     {
-                    <p> @Model.Tag.ToString()</p>
+                        <p> @Model.Tag.ToString()</p>
+                    }
+                    else
+                    {
+                        <p></p>
                     }
                 </div>
             </div>

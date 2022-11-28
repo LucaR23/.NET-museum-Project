@@ -53,25 +53,13 @@ $(".btn-del").on("click", function () {             // delete fields
     }
 });
 
-$(".modifica").on("click", function () {                      // ajax call to update a fields
+$(".modifica").on("click", function () {                      // on click of modify button 
     let id = $(this).closest("tr").find("td").eq(0).html();
     const getTabella = window.location.search.split('=');
     let tabella = getTabella[1];
-    $.ajax({
-        url: "/Update/GetReperto",
-        type: 'GET',
-        data:{
-        upd: id,
-        tab: tabella
-    },
-        success: function (data) {
 
-        },
-        error: function () {
-            alert("internal error");
-        }
-    })
+    localStorage.setItem("upd", id);
+    localStorage.setItem("tab", tabella);
 
-    
-
+    window.location.href =  "/Update/Index";
 });

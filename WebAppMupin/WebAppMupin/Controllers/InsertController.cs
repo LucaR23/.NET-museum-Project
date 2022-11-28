@@ -27,7 +27,7 @@ namespace WebAppMupin.Controllers
                 if (ins == "libri")
                 {
                     Libro l = new Libro();
-                    return PartialView("InserisciReperto/_inserisciLibro", l);
+                    return PartialView("InserisciReperto/_inserisciLibri", l);
                 }
                 if (ins == "periferiche")
                 {
@@ -37,7 +37,7 @@ namespace WebAppMupin.Controllers
                 if (ins == "riviste")
                 {
                     Rivista r = new Rivista();
-                    return PartialView("InserisciReperto/_inserisciRivista", r);
+                    return PartialView("InserisciReperto/_inserisciRiviste", r);
                 }
                 if (ins == "software")
                 {

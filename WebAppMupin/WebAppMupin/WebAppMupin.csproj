@@ -233,6 +233,7 @@
     <Content Include="info.txt" />
     <Content Include="MyScript\insertReperto.js" />
     <Content Include="MyScript\reperti.js" />
+    <Content Include="MyScript\updateReperto.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -302,12 +303,13 @@
     <Content Include="Views\User\_DetailReperti.cshtml" />
     <Content Include="Views\Administrator\_NewUser.cshtml" />
     <Content Include="Views\User\NewReperto.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciComputer.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciLibro.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciPeriferiche.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciRivista.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciSoftware.cshtml" />
-    <Content Include="Views\Insert\InserisciReperto\_inserisciDetail.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciComputer.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciLibro.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciPeriferiche.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciRivista.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciSoftware.cshtml" />
+    <Content Include="Views\Shared\InserisciReperto\_inserisciDetail.cshtml" />
+    <Content Include="Views\Update\UpdateReperto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -318,7 +320,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Views\Update\" />
+    <Folder Include="Views\Insert\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

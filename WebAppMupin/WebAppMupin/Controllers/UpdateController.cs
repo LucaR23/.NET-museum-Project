@@ -11,12 +11,18 @@ namespace WebAppMupin.Controllers
 {
     public class UpdateController : Controller
     {
+
+        public ActionResult Index()
+        {
+            return View("UpdateReperto");
+        }
+
         public ActionResult GetReperto(string upd, string tab)
         {
             MySqlConnection conn = UtilityDB.connection();
             List<string> tabelle = UtilityReperti.getTableName(conn);
        
-            if (tabelle.Contains(upd))
+            if (tabelle.Contains(tab))
             {
                 string query = queryReperto(upd, tab);
                 MySqlCommand cmd= new MySqlCommand(query, conn);
@@ -41,8 +47,8 @@ namespace WebAppMupin.Controllers
                         {
                             c.SistemaOperativo = rd["sistema_operativo"].ToString();
                         }
-                    } 
-                    //
+                    }
+                    return PartialView("InserisciReperto/_inserisciComputer", c);
                 }
                 if (tab == "libri")
                 {
@@ -57,8 +63,9 @@ namespace WebAppMupin.Controllers
                         l.numeroPagine = rd["numero_pagine"].ToString();
                         l.ISBN = rd["ISBN"].ToString();
                     }
-                    //
+                    return PartialView("InserisciReperto/_inserisciLibri", l);
                 }
+
                 if (tab == "periferiche")
                 {
                     Periferica p = new Periferica();
@@ -68,8 +75,9 @@ namespace WebAppMupin.Controllers
                         p.nomeModello= rd["nome_modello"].ToString() ;
                         p.Tipologia = rd["tipologia"].ToString();
                     }
-                    //
+                      return PartialView("InserisciReperto/_inserisciPeriferiche", p);
                 }
+
                 if (tab == "riviste")
                 {
                     Rivista r = new Rivista();
@@ -81,8 +89,9 @@ namespace WebAppMupin.Controllers
                         r.Anno = rd["anno"].ToString();
                         r.casaEditrice = rd["casa_editrice"].ToString();
                     }
-                    //
+                    return PartialView("InserisciReperto/_inserisciRiviste", r);
                 }
+
                 if (tab == "software")
                 {
                     Software s = new Software();
@@ -94,7 +103,7 @@ namespace WebAppMupin.Controllers
                         s.tipoSoftware = rd["tipo_software"].ToString();
                         s.supporto = rd["supporto"].ToString();
                     }
-                    //
+                    return PartialView("InserisciReperto/_inserisciSoftware", s);
                 }
                 if (tab == "repertodetail")
                 {
