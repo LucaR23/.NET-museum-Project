@@ -33,7 +33,7 @@ namespace WebAppMupin.Controllers
         public ActionResult Reset(string username)
         {
             MySqlConnection cnn = UtilityDB.connection();
-            string query = "UPDATE `utenti` SET `password`=NULL,`Abilitato`=0  WHERE `username`=@us";
+            string query = "UPDATE `utenti` SET `password`=NULL WHERE `username`=@us";
             MySqlCommand cmd = cnn.CreateCommand();
             cmd.CommandText = query;
             cmd.Parameters.AddWithValue("@us", username);

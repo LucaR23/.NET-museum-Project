@@ -33,7 +33,7 @@
              
             },
             error: function () {
-                alert("Internal Error ");
+                alert("Internal Error");
             }
         });
         })
@@ -53,7 +53,7 @@ $("#submitInsert").click(function (e) {    //  ajax call to insert new fields
         url: $('#form').attr('action'),
         data: $('#form').serialize(),
         success: function (data) {
-            //alert(data); 
+            alert(data); 
             console.log(data);
         },
         error: () => {

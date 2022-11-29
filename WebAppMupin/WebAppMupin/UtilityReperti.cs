@@ -54,37 +54,15 @@ namespace WebAppMupin
                 }
             }
             string querydef = query.Remove(query.Length - 1);
-            querydef += " FROM " + tabella+ " WHERE Identificativo = '"+id.ToString()+"';";
+            querydef += " FROM " + tabella+ " WHERE Identificativo = '"+id.ToString().Replace("'","\"")+"';";
             return querydef;
         }
 
-        public static string generateQueryDelete(string tabella,string id)
+        public static string generateQueryDelete(string tabella, string id)
         {
-            string query = "DELETE FROM " + tabella.ToString() + " WHERE Identificativo= '"+id.ToString()+"';";
+            string query = "DELETE FROM " + tabella.ToString() + " WHERE Identificativo= '" + id.ToString().Replace("'", "\"") + "';";
             return query;
         }
-   
-        public static string generateQueryUpdate(string tab,string id)
-        {
-            string query = "";
-            return query;
-        }
-
-        public static string generateQueryInsert(string tab,List<string> campi)
-        {
-            // INSERT INTO `periferiche`(`Id_catalogo`, `Identificativo`, `nome_modello`, `tipologia`) VALUES('[value-1]', '[value-2]', '[value-3]', '[value-4]')
-            string query = "INSERT INTO " + tab.ToString()+"( ";
-            foreach(string field in campi)
-            {
-                query += field+",";
-            }
-           string queryMod= query.Remove(query.Length - 1);
-
-            queryMod += " ) VALUES ( ";
-
-            return queryMod;
-        }
-
 
     }
 }

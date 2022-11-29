@@ -11,7 +11,6 @@ namespace WebAppMupin.Controllers
 {
     public class UpdateController : Controller
     {
-
         public ActionResult Index()
         {
             return View("UpdateReperto");
@@ -105,29 +104,8 @@ namespace WebAppMupin.Controllers
                     }
                     return PartialView("InserisciReperto/_inserisciSoftware", s);
                 }
-                if (tab == "repertodetail")
-                {
-                    RepertoDetail red = new RepertoDetail();
-                    while (rd.Read())
-                    {
-                        if (rd["note"] != DBNull.Value)
-                        {
-                            red.Note = rd["note"].ToString();
-                        }
-                        if (rd["URL"]!= DBNull.Value)
-                        {
-                            red.Url = rd["URL"].ToString();
-                        }
-                        if (rd["tag"]!= DBNull.Value)
-                        {
-                            red.Tag = rd["tag"].ToString();
-                        }
-                    }
-                    //
-                }
                 conn.Close();
-            }
-           
+            }         
             else
             {  
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -135,6 +113,93 @@ namespace WebAppMupin.Controllers
             return View();      // -> not Used 
         }
         // very scholastic method there are better way using reflection or other mapper helper
+
+
+
+        public ActionResult GetRepertoDetail(string upd)
+        {
+            RepertoDetail red = new RepertoDetail();
+            MySqlConnection con = UtilityDB.connection();
+            string que = "SELECT * FROM repertodetail WHERE identificativoReperto= @id";
+            MySqlCommand command = new MySqlCommand(que, con);
+            con.Open();
+            command.Parameters.AddWithValue("@id", upd);
+            MySqlDataReader read = command.ExecuteReader();
+            if (!read.HasRows)
+            {
+                con.Close();
+                return PartialView("InserisciReperto/_inserisciDetail", red);
+            }
+            while (read.Read())
+            {
+                if (read["note"] != DBNull.Value)
+                {
+                    red.Note = read["note"].ToString();
+                }
+                if (read["URL"] != DBNull.Value)
+                {
+                    red.Url = read["URL"].ToString();
+                }
+                if (read["tag"] != DBNull.Value)
+                {
+                    red.Tag = read["tag"].ToString();
+                }
+            }
+            con.Close();
+            return PartialView("InserisciReperto/_inserisciDetail", red);
+        }
+
+        //  metodi di update
+        public ActionResult UpdateComputer(Computer c)
+        {
+           string query= c.Update(c);
+            bool a = doUpdate(query);
+            if (a == true)
+                return Json("Aggiornato con successo");
+            else  
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+        }
+
+        public ActionResult UpdateLibro(Libro l)
+        {
+            string query = l.Update(l);
+            bool a = doUpdate(query);
+            if (a == true)
+                return Json("Aggiornato con successo");
+            else
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult UpdatePeriferica(Periferica p)
+        {
+            string query = p.Update(p);
+            bool a = doUpdate(query);
+            if (a == true)
+                return Json("Aggiornato con successo");
+            else
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult UpdateRivista(Rivista r)
+        {
+            string query = r.Update(r);
+            bool a = doUpdate(query);
+            if (a == true)
+                return Json("Aggiornato con successo");
+            else
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult UpdateSoftware(Software s)
+        {
+            string query = s.Update(s);
+            bool a = doUpdate(query);
+            if (a == true)
+                return Json("Aggiornato con successo");
+            else
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
 
         // piccolo metodo di utility
         public string queryReperto(string upd, string tab)
@@ -145,5 +210,23 @@ namespace WebAppMupin.Controllers
             return query;
 
         }
+
+        public bool doUpdate(string query)
+        {
+            MySqlConnection cnn = UtilityDB.connection();
+            MySqlCommand cmd = new MySqlCommand(query, cnn);
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+                return true;      // updated
+            }
+            catch (Exception ex)
+            {
+                return false;   // error
+            }
+        }
+
     }
 }

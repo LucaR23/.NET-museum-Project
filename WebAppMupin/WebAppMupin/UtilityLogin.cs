@@ -51,7 +51,12 @@ namespace WebAppMupin
 
             cnn.Open();
             MySqlDataReader read = cmd.ExecuteReader();
+               
             read.Read();
+            if (!read.HasRows)
+            {
+                return 0; //data reader vuoto user exist but not enabled
+            }
             if (read["password"] != DBNull.Value)
             {
                 return 2;   // already setted
