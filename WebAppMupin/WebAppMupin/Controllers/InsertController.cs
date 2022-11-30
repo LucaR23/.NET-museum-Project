@@ -12,6 +12,16 @@ namespace WebAppMupin.Controllers
 {
     public class InsertController : Controller
     {
+        public ActionResult Index()
+        {
+            MySqlConnection cnn = UtilityDB.connection();
+            List<string> tabelle = UtilityReperti.getTableName(cnn);
+            tabelle.Remove("categoriereperti");
+            tabelle.Remove("utenti");
+            tabelle.Remove("repertodetail");
+            return View("NewReperto", tabelle);
+        }
+
 
         public ActionResult New(string ins)
         {
@@ -157,13 +167,14 @@ namespace WebAppMupin.Controllers
             else
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
         }
-        public ActionResult InsertDetail(string id, string note, string url, string tag)
+        public ActionResult InsertDetail(string id, string note, string url, string tag, byte[] img)
         {
             RepertoDetail rd = new RepertoDetail();
             rd.Id = id.ToString();
             rd.Note = note.ToString();
             rd.Url = url.ToString();
             rd.Tag = tag.ToString();
+            rd.Immagine = img;
 
             string query = rd.Insert(rd);
 

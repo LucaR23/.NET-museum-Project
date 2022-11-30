@@ -122,18 +122,29 @@ namespace WebAppMupin.Controllers
             {
                 cnn.Close();
             }
-            return View();  // -> not used T
+            return View();  // -> not used
         }
 
         public ActionResult Delete(string del,string tab)
         {
             MySqlConnection connection = UtilityDB.connection();
+            // check if field has detail
+            bool hasDetail = UtilityReperti.checkDetail(del, connection);
+            if (hasDetail)
+            {
+                string qu = "DELETE FROM repertodetail WHERE identificativoReperto = @ide";
+                MySqlCommand sc = new MySqlCommand(qu,connection);
+                sc.Parameters.AddWithValue("@ide", del);
+                //connection.Open();
+                sc.ExecuteNonQuery();
+                connection.Close();
+            }
             string query = UtilityReperti.generateQueryDelete(tab,del);
             MySqlCommand cnn = new MySqlCommand(query, connection);
             try
             {
                 connection.Open();
-                cnn.ExecuteNonQuery();
+                cnn.ExecuteNonQuery();     
                 connection.Close();
                 return Json("Eliminato");
             }catch(MySqlException ex)
@@ -141,16 +152,5 @@ namespace WebAppMupin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }              
         }
-
-        public ActionResult New()
-        {
-            MySqlConnection cnn = UtilityDB.connection();
-            List<string> tabelle = UtilityReperti.getTableName(cnn);
-            tabelle.Remove("categoriereperti");
-            tabelle.Remove("utenti");
-            tabelle.Remove("repertodetail");
-            return View("NewReperto",tabelle);
-        }
-
     }
 }

@@ -198,6 +198,13 @@ namespace WebAppMupin.Controllers
             if (a == true)
                 return Json("Aggiornato con successo");
             else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public ActionResult UpdateDetail(RepertoDetail rd)
+        {
+            return Json("Aggiornato con successo");
+     
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 

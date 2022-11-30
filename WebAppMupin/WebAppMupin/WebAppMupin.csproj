@@ -302,7 +302,7 @@
     <Content Include="Views\User\ViewReperti.cshtml" />
     <Content Include="Views\User\_DetailReperti.cshtml" />
     <Content Include="Views\Administrator\_NewUser.cshtml" />
-    <Content Include="Views\User\NewReperto.cshtml" />
+    <Content Include="Views\Insert\NewReperto.cshtml" />
     <Content Include="Views\Shared\InserisciReperto\_inserisciComputer.cshtml" />
     <Content Include="Views\Shared\InserisciReperto\_inserisciLibri.cshtml" />
     <Content Include="Views\Shared\InserisciReperto\_inserisciPeriferiche.cshtml" />
@@ -320,7 +320,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Views\Insert\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.3.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

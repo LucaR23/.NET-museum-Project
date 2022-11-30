@@ -43,7 +43,7 @@
 <body>
       @if (Session["utente"] != null)
       {
-        <button type="submit" id="newField" class="btn btn-info" onclick="location.href='@Url.Action("New","User")'">Inserisci Nuovo</button>
+        <button type="submit" id="newField" class="btn btn-info" onclick="location.href='@Url.Action("Index","Insert")'">Inserisci Nuovo</button>
         <button type="submit" id="logout" class="btn btn-warning" onclick="location.href='/User/logout'">Logout</button>
       }
 

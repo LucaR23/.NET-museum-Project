@@ -67,10 +67,28 @@ $('#submit').on("click", function () {
         data: $('#form').serialize(),
         success: function (data) {
             alert(data);
+            submitDetail();
         },
         error: function () {
             alert("Internal Error");
+            console.log("Impossibile aggiornare");
         }
 
     })
 });
+
+function submitDetail() {
+    $.ajax({
+        url: $('#formDetail').attr('action'),
+        type: 'POST',
+        data: $('#formDetail').serialize(),
+        success: function (data) {
+            alert(data);
+        },
+        error: function () {
+            alert("Internal Error");
+            console.log("Impossibile aggiornare i dettagli");
+        }
+
+    })
+}

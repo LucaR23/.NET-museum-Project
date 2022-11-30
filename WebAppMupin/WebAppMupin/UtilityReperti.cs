@@ -64,5 +64,23 @@ namespace WebAppMupin
             return query;
         }
 
+        public static bool checkDetail(string id, MySqlConnection cno)
+        {
+            string qui = "SELECT * FROM repertodetail WHERE identificativoReperto = @idf";
+            MySqlCommand mySql = new MySqlCommand(qui, cno);
+            mySql.Parameters.AddWithValue("@idf", id);
+            cno.Open();
+            MySqlDataReader rd = mySql.ExecuteReader();
+            if (!rd.HasRows)
+            {
+                rd.Close();
+                return false;
+            }              // hasn't detail
+            else
+            {
+                rd.Close();
+                return true;   // has detail
+            }
+        }
     }
 }
